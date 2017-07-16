@@ -2,6 +2,12 @@
 
 An ad-hoc utility to pump your data between kafka topics. 
 
+[![Clojars Project](http://clojars.org/trueneu/kafka-smallclone/latest-version.svg)](http://clojars.org/trueneu/kafka-smallclone)
+
+## Adding as a dependency
+
+Clojars: `[trueneu/kafka-smallclone "0.1.1"]`
+
 ## Usage
 
     kafka-smallclone is an ad-hoc utility to reproduce data from one kafka topic to another.
