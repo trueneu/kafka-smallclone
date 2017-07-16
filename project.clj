@@ -1,5 +1,5 @@
-(defproject kafka-smallclone "0.1.0-SNAPSHOT"
-  :description "Tool for re-producing data from one Kafka topic to another"
+(defproject kafka-smallclone "0.1.1"
+  :description "An ad-hoc tool for re-producing data from one Kafka topic to another"
   :url "https://github.com/trueneu/kafka-smallclone/"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
