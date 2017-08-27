@@ -1,4 +1,4 @@
-(defproject trueneu/kafka-smallclone "0.1.2"
+(defproject trueneu/kafka-smallclone "0.1.3"
   :description "An ad-hoc tool for re-producing data from one Kafka topic to another"
   :url "https://github.com/trueneu/kafka-smallclone/"
   :license {:name "Eclipse Public License"

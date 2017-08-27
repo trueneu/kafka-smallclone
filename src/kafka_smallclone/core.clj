@@ -28,8 +28,10 @@
                       #(future (pipe/pipe! broker-from topic-from broker-to topic-to % consumer-group duration rewind)) (range partition-count-from)))
             records-count (doall (map deref pipes))]
         (map #(zk/zookeeper-close! %) [zk-from zk-to])
-        (exit 0 (if verbose-mode (str "Total of " (apply + records-count) " records processed") "")))
-      (exit 1 "Partitions count differ between topics"))))
+        '(0 (if verbose-mode (str "Total of " (apply + records-count) " records processed") "")))
+      (if (some zero? [partition-count-from partition-count-to])
+        '(1 "One or more topics don't exist")
+        '(2 "Partitions count differ between topics")))))
 
 (defn -main [& args]
   (let [{:keys [options exit-message ok?]} (cli/validate-args args)
@@ -37,5 +39,6 @@
     (System/setErr (PrintStream. (FileOutputStream. "/dev/null")))
     (if exit-message
       (exit (if ok? 0 1) exit-message)
-      (clone! options))))
+      (let [[clone-exit-status clone-exit-message] (clone! options)]
+        (exit clone-exit-status clone-exit-message)))))
 
