@@ -28,7 +28,7 @@
                       #(future (pipe/pipe! broker-from topic-from broker-to topic-to % consumer-group duration rewind)) (range partition-count-from)))
             records-count (doall (map deref pipes))]
         (map #(zk/zookeeper-close! %) [zk-from zk-to])
-        '(0 (if verbose-mode (str "Total of " (apply + records-count) " records processed") "")))
+        (list 0 (if verbose-mode (str "Total of " (apply + records-count) " records processed") "")))
       (if (some zero? [partition-count-from partition-count-to])
         '(1 "One or more topics don't exist")
         '(2 "Partitions count differ between topics")))))
